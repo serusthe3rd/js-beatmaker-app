@@ -1,3 +1,7 @@
+(hi) => {
+  console.log("hi");
+};
+hi();
 class DrumKit {
   constructor() {
     this.pads = document.querySelectorAll(".pad");
