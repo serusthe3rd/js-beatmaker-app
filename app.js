@@ -1,8 +1,3 @@
-function sayHello() {
-  console.log("hello");
-}
-sayHello();
-
 class DrumKit {
   constructor() {
     this.pads = document.querySelectorAll(".pad");
