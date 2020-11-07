@@ -22,12 +22,15 @@ class DrumKit {
       if (bar.classList.contains("active")) {
         // Chrck each sound
         if (bar.classList.contains("kick-pad")) {
+          this.kickAudio.currentTime = 0;
           this.kickAudio.play();
         }
         if (bar.classList.contains("snare-pad")) {
+          this.snareAudio.currentTime = 0;
           this.snareAudio.play();
         }
         if (bar.classList.contains("hihat-pad")) {
+          this.hihatAudio.currentTime = 0;
           this.hihatAudio.play();
         }
       }
