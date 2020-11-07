@@ -2,11 +2,16 @@ class DrumKit {
   constructor() {
     this.pads = document.querySelectorAll(".pad");
     this.playButton = document.querySelector(".play");
+    this.currentKick = "./allSounds/kick-classic.wav";
+    this.currentSnare = "./allSounds/snare-acoustic01.wav";
+    this.currentHihat = "./allSounds/hihat-acoustic01.wav";
     this.kickAudio = document.querySelector(".kick-sound");
     this.snareAudio = document.querySelector(".snare-sound");
     this.hihatAudio = document.querySelector(".hihat-sound");
     this.index = 0;
     this.bpm = 150;
+    this.isPlaying = null;
+    this.select = document.querySelector("select");
   }
   activePad() {
     this.classList.toggle("active");
@@ -39,9 +44,27 @@ class DrumKit {
   start() {
     console.log(this);
     const interval = (60 / this.bpm) * 1000;
-    setInterval(() => {
-      this.repeat();
-    }, interval);
+    // Check if its playing
+    if (this.isPlaying) {
+      // Clear the interval
+      clearInterval(this.isPlaying);
+      this.isPlaying = null;
+    } else {
+      this.isPlaying = setInterval(() => {
+        this.repeat();
+      }, interval);
+    }
+  }
+  updateBtn() {
+    // If its not NULL right now
+    if (!this.isPlaying) {
+      this.playButton.innerText = "Stop";
+      this.playButton.classList.add("active");
+    } else {
+      // If it is NULL right now
+      this.playButton.innerText = "Play";
+      this.playButton.classList.remove("active");
+    }
   }
 }
 
@@ -55,5 +78,6 @@ drumKit.pads.forEach((pad) => {
 });
 
 drumKit.playButton.addEventListener("click", function () {
+  drumKit.updateBtn();
   drumKit.start();
 });
