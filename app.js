@@ -16,6 +16,7 @@ class DrumKit {
     this.tempoSlider = document.querySelector(".tempo-slider");
   }
   activePad() {
+    // Toggles class active to the pads
     this.classList.toggle("active");
   }
   repeat() {
@@ -27,7 +28,7 @@ class DrumKit {
       bar.style.animation = `playTrack 0.3s alternate ease-in-out 2`;
       // Check if pads are active
       if (bar.classList.contains("active")) {
-        // Chrck each sound
+        // Check each sound
         if (bar.classList.contains("kick-pad")) {
           this.kickAudio.currentTime = 0;
           this.kickAudio.play();
@@ -44,7 +45,7 @@ class DrumKit {
     });
   }
   start() {
-    console.log(this);
+    // Sets default interval(bpm)
     const interval = (60 / this.bpm) * 1000;
     // Check if its playing
     if (this.isPlaying) {
@@ -71,6 +72,7 @@ class DrumKit {
   changeSound(e) {
     const selectionName = e.target.name;
     const selectionValue = e.target.value;
+    // Checks the target value then changes the src
     switch (selectionName) {
       case "kick-select":
         this.kickAudio.src = selectionValue;
